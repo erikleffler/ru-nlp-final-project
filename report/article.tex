@@ -165,18 +165,20 @@ using learning rate schedules that vary both for different epochs and layers,
 that allow users to fine-tune a pre-trained LSTM based model to different tasks. 
 
 It was right after the ULMFiT paper that BERT was introduced
-\cite{devlin2018bert}. BERT is a transformer model \cite{vaswani2017attention} that was designed to easily
-enable transfer learning in NLP. In the paper, the authors demonstrate that the
-model achieve, what was at the time, state of the art results in 11 different
-NLP tasks. In short, BERT is a transformer encoder that has been pre-trained on
-a joint task of masked language modelling and next sentence prediction. Masked
-language modelling is the task of predicting masked out words in a sentence.
-Next sentence prediction is the task of classifying whether two sentence follow
-each other in a piece of text. This pre-training task proved general enough
-that slight augmentations and fine-tuning of the model yielded state of the art
-results. Since, there have been endless variations of BERT presented in the
-literature. We have chose a pre-trained ALBERT model \cite{lan2019albert}, since
-it is relatively small in size, and performs well on extractive QA.
+\cite{devlin2018bert}. BERT is a transformer model \cite{vaswani2017attention}
+that was designed to easily enable transfer learning in NLP. In the paper, the
+authors demonstrate that the model can be augmented and fine-tuned to achieve,
+what was at the time, state of the art results in 11 different NLP tasks. In
+short, BERT is a transformer encoder that has been pre-trained on a joint task
+of masked language modelling and next sentence prediction. Masked language
+modelling is the task of predicting masked out words in a sentence.  Next
+sentence prediction is the task of classifying whether two sentence follow each
+other in a piece of text. This pre-training task proved general enough that
+slight augmentations and fine-tuning of the model yielded state of the art
+results. Since this, there have been endless variations of BERT presented in the
+literature. We have chosen a to use a pre-trained ALBERT model
+\cite{lan2019albert} for this paper. This decision was made since it is
+relatively small in size, and performs well on extractive QA.
 
 \subsubsection{Extractive Question Answering}
 Extractive Question Answering is a specific format of question answering where a
@@ -227,7 +229,7 @@ labeled data samples.
 \section{Experiment}
 We use an ALBERT base model that has been fine-tuned on the SQuADv2 dataset as
 our starting point. For our target domain we have picked the biomedical domain.
-We a version of the BioASQ dataset that has been adapted to
+We use a version of the BioASQ dataset that has been adapted to
 the SQuAD format for the MRQA shared task of 2019. For training, we strip the
 labels from the BioASQ dataset. We attach pseudo labels to the BioASQ data that
 is updated before every forward pass. The BioASQ
