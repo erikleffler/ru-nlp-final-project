@@ -81,6 +81,7 @@ def train_and_evaluate(args):
     bio_dataset, bio_length = util.parse_mrqa_pseudo(
         path=bio_data_path, tokenizer=tokenizer
     )
+    print(bio_length)
 
     # training locally is just for debuging, don't bite off more than my laptop
     # can chew
