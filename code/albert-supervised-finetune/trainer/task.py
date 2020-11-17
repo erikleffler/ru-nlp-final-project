@@ -2,9 +2,7 @@ import os
 import json
 
 from . import util
-from . import train
 from . import parse
-from . import callbacks
 
 import tensorflow as tf
 import numpy as np
@@ -28,7 +26,6 @@ def train_and_evaluate(args):
 
     # First we Load Albert
     model_string = "twmkn9/albert-base-v2-squad2"
-#    model_string = "ktrapeznikov/albert-xlarge-v2-squad-v2"
 
     if args.remote:
 
@@ -234,39 +231,6 @@ def train_and_evaluate(args):
     with tf.io.gfile.GFile(args.job_dir + "/test_preds.jsonl", "w+") as f:
         json.dump(preds, f)
 
-
-"""
-    learning_rate_cb = callbacks.BatchLearningRate(
-        warmup_steps=args.warmup_steps,
-        target_learning_rate=args.learning_rate,
-        global_batch_size=global_batch_size,
-    )
-
-    callback_list.append(learning_rate_cb)
-
-    optimizer = tf.keras.optimizers.Adam(learning_rate_cb)
-
-    if args.amp:
-        tf.config.optimizer.set_experimental_options(
-            {"auto_mixed_precision": True}
-        )
-        optimizer = tf.keras.mixed_precision.experimental.LossScaleOptimizer(
-            optimizer, "dynamic"
-        )
-
-    bert.bert.trainable = True
-    bert.compile(
-        optimizer=optimizer, loss=train.mlm_sparse_categorical_crossentropy
-    )
-
-    bert.fit(
-        train_dataset,
-        batch_size=None,
-        epochs=1,
-        verbose=0,
-        callbacks=callback_list,
-    )
-    """
 
 if __name__ == "__main__":
     args = parse.get_args()
